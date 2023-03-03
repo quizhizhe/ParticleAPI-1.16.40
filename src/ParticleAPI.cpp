@@ -52,7 +52,7 @@ std::vector<std::pair<double, int>> binSplit(double start, double end) {
 
 extern "C" {
 void PTAPI_spawnParticle(int displayRadius, Vec3 const& pos, std::string const& particleName, int dimId){
-    auto diminsion = (Dimension*)Global<Level>->getDimension(dimId).mHandle.lock().get();
+    auto diminsion = (Dimension*)Global<Level>->getDimension(dimId);
     diminsion->forEachPlayer([&](Player& player) {
         if (displayRadius == UINT_MAX || player.getPosition().distanceTo(pos) < displayRadius) {
             player.sendSpawnParticleEffectPacket(pos, dimId, particleName);
